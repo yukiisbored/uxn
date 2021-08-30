@@ -6,6 +6,25 @@ An assembler and emulator for the [Uxn stack-machine](https://wiki.xxiivv.com/si
 
 ### Linux/OS X
 
+#### With Nix
+
+Build the assembler and emulator. The assembler (`uxnasm`) and emulator (`uxnemu`) are created in the `/result/bin` folder.
+
+```sh
+nix-build
+nix build     # If you have Nix flakes enabled, use this instead
+```
+
+If you have Nix flakes enabled, you use uxn without cloning the repository.
+
+```sh
+nix run 'git+https://git.sr.ht/~rabbits/uxn?ref=main'
+nix run 'git+https://git.sr.ht/~rabbits/uxn?ref=main#uxnasm'
+nix run 'git+https://git.sr.ht/~rabbits/uxn?ref=main#uxncli'
+```
+
+#### Without Nix
+
 To build the Uxn emulator, you must install [SDL2](https://wiki.libsdl.org/) for your distro. If you are using a package manager:
 
 ```sh
@@ -48,6 +67,15 @@ export PATH="${PATH}:/mingw64/bin"
 git clone https://git.sr.ht/~rabbits/uxn
 cd uxn
 ./build.sh
+```
+
+### Universal executables for Linux (experimental)
+
+If you have Nix with flakes enabled on your system, you can use [nix bundle](https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-bundle.html) to build a single-file executable that will work on any Linux system:
+```sh
+nix bundle 'git+https://git.sr.ht/~rabbits/uxn?ref=main'
+nix bundle 'git+https://git.sr.ht/~rabbits/uxn?ref=main#uxnasm'
+nix bundle 'git+https://git.sr.ht/~rabbits/uxn?ref=main#uxncli'
 ```
 
 ## Getting Started
